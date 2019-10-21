@@ -16,6 +16,7 @@ import {ProfileHome} from '../../modules/profile'
 import {SupportHome} from '../../modules/support';
 import {OrderHome} from '../../modules/order';
 import Icon from 'react-native-vector-icons/Ionicons';
+import React from 'react'
 // import IconEntypo from 'react-native-vector-icons/Entypo';
 // import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import constanst from '../../utils/contanst';
@@ -74,26 +75,26 @@ const tabStack = createBottomTabNavigator({
 },
 {
   initialRouteName: 'Main',
-  // defaultNavigationOptions: ({ navigation }) => ({
-  //   tabBarIcon: ({ focused, horizontal, tintColor }) => {
-  //     const { routeName } = navigation.state;
-  //     const style = {marginBottom: Platform.OS === 'ios' ? 0 : 10}
-  //     return (
-  //       <Icon name={constanst.icons[routeName]} size={23}  color = {tintColor}  style = {style}/>
-  //     );
-  //   },
-  //   title : constanst.titles[navigation.state.routeName]
-  // }),
-  // tabBarOptions: {
-  //   activeTintColor: Colors.blueSecondary,
-  //   inactiveTintColor: Colors.gray_1,
-  //   style: {
-  //     paddingTop: 15,
-  //     paddingBottom: 4,
-  //     paddingLeft: 4,
-  //     height: 65
-  //   },
-  // },
+  defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      const { routeName } = navigation.state;
+      const style = {marginBottom: 10}
+      return (
+        <Icon name={constanst.icons[routeName]} size={24}  color = {tintColor}  style = {style}/>
+      );
+    },
+    title : constanst.titles[navigation.state.routeName]
+  }),
+  tabBarOptions: {
+    activeTintColor: Colors.green_1,
+    inactiveTintColor: Colors.gray_1,
+    style: {
+      paddingTop: 13,
+      paddingBottom: 4,
+      paddingLeft: 4,
+      height: 65
+    },
+  },
   headerMode: 'none',
 })
 const StackNavigation = createSwitchNavigator({

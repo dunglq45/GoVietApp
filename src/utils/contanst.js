@@ -2,11 +2,11 @@ export default{
   icons: {
     'Main': 'md-home',
     'Order': 'md-reorder',
-    'Support': 'help-with-circle',
-    'Profile': 'account',
+    'Support': 'md-help-circle',
+    'Profile': 'md-contact',
   },
   titles : {
-    'Home' : 'Trang chủ',
+    'Main' : 'Trang chủ',
     'Order' : 'Đơn hàng',
     'Support' : 'Trợ giúp',
     'Profile' : 'Tài khoản',
