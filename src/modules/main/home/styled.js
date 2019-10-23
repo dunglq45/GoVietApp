@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import Colors from '../../../utils/Colors';
 
+export const View = styled.View``
 export const MainWrapper = styled.ScrollView`
 flex : 1;
 `
@@ -45,16 +46,28 @@ padding-left: 5%;
 padding-right: 5%;
 height: 140;
 padding-top: 20;
+
 `
-export const ImageBackground = styled.ImageBackground`
+export const ImageBackground = styled.Image`
 width: 100%;
 height: 100%;
-border-radius: 15;
+border-radius: 5;
 align-items: flex-end;
 `
 export const TextRender = styled.Text`
 font-size: 13;
 fontWeight: 700;
+text-align: center;
+`
+export const ViewText = styled.View`
+width: 100;
+height: 30;
+background-color: ${Colors.white_1};
+position : absolute;
+bottom : 20;
+right : 30;
+justify-content: center;
+border-radius: 5;
 `
 export const TouchableOpacity = styled.TouchableOpacity`
 width: 100;

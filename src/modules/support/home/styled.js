@@ -17,22 +17,33 @@ export const TextInput = styled.TextInput`
 padding-left: 5;
 `
 export const ViewRenderItem = styled.View`
-padding-top: 20;
-padding-bottom: 20;
+padding-left: 20;
+width: 85%;
 `
-export const TouchableOpacityItem = styled.TouchableOpacity`
-display: flex;
-flex-direction: row;
-justify-content: space-between;`
 export const TextItem = styled.Text`
-padding-left: 15%;`
+
+`
 export const View = styled.View`
 width: 85%;
 height: 1;
 background-color: ${Colors.white_2};
 margin-left: 15%;
 `
-export const ViewBanner = styled.View``
+export const ViewBanner = styled.View`
+`
+export const TouchableOpacitySeach = styled.TouchableOpacity``
+export const TouchableOpacityItem = styled.TouchableOpacity`
+display: flex;
+flex-direction: row;
+padding-left: 10;
+padding-top: 15;
+padding-bottom: 10;
+`
+export const ViewItem = styled.View`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+`
 const styles = StyleSheet.create({
   
 })

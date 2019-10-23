@@ -11,12 +11,18 @@ import
   AuthenticationLoading
   } 
 from '../../modules/authen/index';
-import {MainHome} from '../../modules/main';
 import {ProfileHome} from '../../modules/profile'
 import {SupportHome} from '../../modules/support';
 import {OrderHome} from '../../modules/order';
+import {
+  MainHome,
+  CallGoBike,
+  CallGoFood,
+  CallGoSend,
+} from '../../modules/main'
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
+import sale from '../../modules/profile/sale'
 // import IconEntypo from 'react-native-vector-icons/Entypo';
 // import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import constanst from '../../utils/contanst';
@@ -44,7 +50,9 @@ const SupportStack = createStackNavigator(
 )
 const MainStack = createStackNavigator({
     Main: MainHome,
-    // Post,
+    CallGoBike: CallGoBike,
+    CallGoFood: CallGoFood,
+    CallGoSend: CallGoSend,
 },
 {
   initialRouteName: 'Main',
@@ -52,7 +60,7 @@ const MainStack = createStackNavigator({
 })
 const ProfileStack = createStackNavigator({
 Profile: ProfileHome,
-// Setting: Setting
+sale: sale,
 },
 {
 initialRouteName: 'Profile',
