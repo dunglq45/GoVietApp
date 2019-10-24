@@ -11,7 +11,13 @@ import
   AuthenticationLoading
   } 
 from '../../modules/authen/index';
-import {ProfileHome} from '../../modules/profile'
+import {
+  ProfileHome,
+  ChangeLanguage,
+  privacyPolicy,
+  saleOff,
+  TermsAndService
+} from '../../modules/profile'
 import {SupportHome} from '../../modules/support';
 import {OrderHome} from '../../modules/order';
 import {
@@ -22,9 +28,6 @@ import {
 } from '../../modules/main'
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
-import sale from '../../modules/profile/sale'
-// import IconEntypo from 'react-native-vector-icons/Entypo';
-// import IconMaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import constanst from '../../utils/contanst';
 import Colors from '../../utils/Colors';
 const AuthStack = createStackNavigator(
@@ -60,7 +63,10 @@ const MainStack = createStackNavigator({
 })
 const ProfileStack = createStackNavigator({
 Profile: ProfileHome,
-sale: sale,
+Sale: saleOff,
+ChangeLanguage: ChangeLanguage,
+privacyPolicy: privacyPolicy,
+TermsAndService: TermsAndService,
 },
 {
 initialRouteName: 'Profile',
@@ -111,7 +117,7 @@ Auth: AuthStack,
 App: tabStack,
 },
 {
-  initialRouteName: 'App',
+  initialRouteName: 'Auth',
   headerMode: 'none'
 })
 export default createAppContainer(StackNavigation)

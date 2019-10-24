@@ -44,3 +44,4 @@ font-size: 16;
 color: ${Colors.red_1};
 fontWeight: 600;
 `
+export const ViewItemWrapper = styled.View``

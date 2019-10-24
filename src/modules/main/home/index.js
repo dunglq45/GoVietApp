@@ -13,7 +13,6 @@ import {
   ViewRender,
   ImageBackground,
   TextRender,
-  TouchableOpacity,
   TextGoFood,
   ViewGoFood,
   TextFood,
@@ -43,7 +42,10 @@ function Main(props){
     ['Đặt món ngay','CallGoFood'],
     ['Đặt chuyến','CallGoBike']
   ]
-  function onPress(){}
+  const arrTextAndScreen2= [
+    ['Xem ngay','CallGoFood'],
+    ['Nhập mã ngay','Sale']
+  ]
   function onPressMenu(screenName){
     navigation.navigate(screenName)
   }
@@ -98,7 +100,7 @@ function Main(props){
       <TextGoFood>GO-FOOD</TextGoFood>
       <ViewGoFood>
         <TextFood>Khám phá món ăn</TextFood>
-        <TouchableOpacityFood>
+        <TouchableOpacityFood onPress={() => navigation.navigate('CallGoFood')}>
           <TextWrapper>Xem tất cả</TextWrapper>
         </TouchableOpacityFood>
       </ViewGoFood>
@@ -120,8 +122,15 @@ function Main(props){
         </ScrollViewFood>
       </ViewBanner>
       <ViewBottom>
-        {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)}
-        {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)}
+        {/* {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)}
+        {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)} */}
+        {arrTextAndScreen2.map(e => {
+          return(
+            <View>
+              {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg',e[0], e[1],onPressMenu)}
+            </View>
+          )
+        })}
         
       </ViewBottom>
     </MainWrapper>

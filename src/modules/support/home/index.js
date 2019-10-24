@@ -16,7 +16,6 @@ import {
   TextItem,
   TouchableOpacitySeach,
   ViewItem,
-  ViewIcon
 } from './styled'
 
 function Support(){

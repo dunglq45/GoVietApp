@@ -1,1 +1,5 @@
 export {default as ProfileHome} from './home'
+export {default as TermsAndService} from './TermsAndService'
+export {default as privacyPolicy} from './privacyPolicy'
+export {default as ChangeLanguage}  from './ChangeLanguage'
+export {default as saleOff} from './sale'

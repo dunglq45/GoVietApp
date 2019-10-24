@@ -10,14 +10,15 @@ import {
   TextHeader,
   ViewHeader,
   ViewLogOut,
-  TextLogOut
+  TextLogOut,
+  ViewItemWrapper
 } from './styled'
 
-function Profile(){
-  function RenderItem(IconName, text, onPress){
+function Profile(props){
+  function RenderItem(IconName, text,SceenName, onPressItem){
     return(
       <ViewItem>
-        <ViewIcon onPress= {() => {onPress()}} >
+        <ViewIcon onPress= {() => {onPressItem(SceenName)}} >
           <Icon name={IconName} size={25} color={Colors.black_1}></Icon>
           <TextItem>{text}</TextItem>
         </ViewIcon>
@@ -25,19 +26,35 @@ function Profile(){
       </ViewItem>
     )
   }
-  function onPress(){
-  
+  const {navigation} = props
+  const arrayItem = [
+    ['sale','Nhập mã khuyến mại','Sale'],
+    ['format-letter-case','Thay đổi ngôn ngữ', 'ChangeLanguage'],
+    ['text-subject','Điều khoản dịch vụ', 'TermsAndService'],
+    ['shield-key','Chính sách bảo mật', 'privacyPolicy'],
+    ['text-subject','Quy chế', 'TermsAndService'],
+    ['star-outline','Đánh giá ứng dụng GoViet', 'TermsAndService']
+  ]
+  function onPressItem(SceenName){
+    navigation.navigate(SceenName)
   }
   return(
     <ViewWrapper>
       <TextHeader>Tài khoản</TextHeader>
       <ViewHeader></ViewHeader>
-      {RenderItem('sale','Nhập mã khuyến mại',onPress)}
+      {/* {RenderItem('sale','Nhập mã khuyến mại',onPress)}
       {RenderItem('format-letter-case','Thay đổi ngôn ngữ', onPress)}
       {RenderItem('text-subject','Điều khoản dịch vụ', onPress)}
       {RenderItem('shield-key','Chính sách bảo mật', onPress)}
       {RenderItem('text-subject','Quy chế', onPress)}
-      {RenderItem('star','Đánh giá ứng dụng GoViet', onPress)}
+      {RenderItem('star-outline','Đánh giá ứng dụng GoViet', onPress)} */}
+      {arrayItem.map(e =>{
+        return(
+          <ViewItemWrapper>
+            {RenderItem(e[0], e[1], e[2],onPressItem )}
+          </ViewItemWrapper>
+        )
+      })}
       <ViewLogOut>
         <TextLogOut>Đăng xuất</TextLogOut>
       </ViewLogOut>
