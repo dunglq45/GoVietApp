@@ -55,7 +55,7 @@ function Profile(props){
           </ViewItemWrapper>
         )
       })}
-      <ViewLogOut>
+      <ViewLogOut onPress= {() => navigation.navigate('AuthenticationLogin')}>
         <TextLogOut>Đăng xuất</TextLogOut>
       </ViewLogOut>
     </ViewWrapper>

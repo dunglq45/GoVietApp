@@ -29,7 +29,7 @@ function Login(){
         </TouchableOpacityLogin>
       </ViewLogin>
       <ViewFooter>
-        <TextFooter>Khi đăng kí, đăng nhập, tôi đã đồng ý với</TextFooter>
+        <TextFooter>Khi đăng kí, đăng nhập, tôi đã đồng ý với tôi đã đồng ý với tôi đã đồng ý với</TextFooter>
         <TouchableOpacityFooter>
           <Text> điều khoản dịch vụ</Text>
         </TouchableOpacityFooter>

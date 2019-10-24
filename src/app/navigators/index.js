@@ -117,7 +117,7 @@ Auth: AuthStack,
 App: tabStack,
 },
 {
-  initialRouteName: 'Auth',
+  initialRouteName: 'App',
   headerMode: 'none'
 })
 export default createAppContainer(StackNavigation)
