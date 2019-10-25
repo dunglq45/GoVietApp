@@ -42,12 +42,6 @@ function Profile(props){
     <ViewWrapper>
       <TextHeader>Tài khoản</TextHeader>
       <ViewHeader></ViewHeader>
-      {/* {RenderItem('sale','Nhập mã khuyến mại',onPress)}
-      {RenderItem('format-letter-case','Thay đổi ngôn ngữ', onPress)}
-      {RenderItem('text-subject','Điều khoản dịch vụ', onPress)}
-      {RenderItem('shield-key','Chính sách bảo mật', onPress)}
-      {RenderItem('text-subject','Quy chế', onPress)}
-      {RenderItem('star-outline','Đánh giá ứng dụng GoViet', onPress)} */}
       {arrayItem.map(e =>{
         return(
           <ViewItemWrapper>

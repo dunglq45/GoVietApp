@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect, useState}from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconFood from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconSend from 'react-native-vector-icons/Entypo'
@@ -27,30 +27,76 @@ import {
   ViewText,
   View
 } from './styled'
-
+import constant from '../../../utils/contanst'
 function Main(props){
   const {navigation} = props
-  const arrTextAndFunction = [
-    ['Cơm và sôi' , "CallGoFood"],
-    ['Món nước', "CallGoFood"],
-    ['Trà sữa và trà', 'CallGoFood'],
-    ['Bánh mì', 'CallGoFood'],
-    ['Bánh mì', 'CallGoFood'],
-    ['Bánh mì', 'CallGoFood']
-  ]
-  const arrTextAndScreen= [
-    ['Đặt món ngay','CallGoFood'],
-    ['Đặt chuyến','CallGoBike']
-  ]
-  const arrTextAndScreen2= [
-    ['Xem ngay','CallGoFood'],
-    ['Nhập mã ngay','Sale']
-  ]
+  // const arrTextAndFunction = [
+  //   ['Cơm và sôi' , "CallGoFood"],
+  //   ['Món nước', "CallGoFood"],
+  //   ['Trà sữa và trà', 'CallGoFood'],
+  //   ['Bánh mì', 'CallGoFood'],
+  //   ['Bánh mì', 'CallGoFood'],
+  //   ['Bánh mì', 'CallGoFood']
+  // ]
+  // const arrTextAndScreen= [
+  //   ['Đặt món ngay','CallGoFood'],
+  //   ['Đặt chuyến','CallGoBike']
+  // ]
+  // const arrTextAndScreen2= [
+  //   ['Xem ngay','CallGoFood'],
+  //   ['Nhập mã ngay','Sale']
+  // ]
+  const screen =['CallGoFood','CallGoBike','CallGoFood','Sale']
+  const [foodMenuList, setFoodMenuList] = useState([])
+  const [imageList, setImageList] = useState([])
+  const [imageList2, setImageList2] = useState([])
+  function getFoods(){
+    fetch(`${constant.serverName}foodmenu.json`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      setFoodMenuList(responseJson)
+      return responseJson.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  function getImages(){
+    fetch(`${constant.serverName}images.json`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      setImageList(responseJson)
+      return responseJson.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  function getImages2(){
+    fetch(`${constant.serverName}images2.json`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      setImageList2(responseJson)
+      return responseJson.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  useEffect(() =>{
+    getFoods()
+    getImages()
+    getImages2()
+  },[])
   function onPressMenu(screenName){
+    console.log(typeof screenName)
     navigation.navigate(screenName)
   }
-
   function RenderImage(uri, text,screenName,onPressImage){
+    console.log(screenName)
     return (
       <ViewRender onPress = {() => onPressImage(screenName)}>
         <ImageBackground source= {{uri: uri}}>
@@ -88,12 +134,10 @@ function Main(props){
         <TextImage>GO-FOOD</TextImage>
         <TextImage>GO-SEND</TextImage>
       </ViewWraper>
-      {/* {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)}
-      {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt chuyến',onPress)} */}
-        {arrTextAndScreen.map(e => {
+        {imageList.length > 0 && imageList.map(e => {
           return(
             <View>
-              {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg',e[0], e[1],onPressMenu)}
+              {RenderImage(e.uri, e.text, e.screenName,onPressMenu)}
             </View>
           )
         })}
@@ -105,33 +149,25 @@ function Main(props){
         </TouchableOpacityFood>
       </ViewGoFood>
       <ViewBanner>
-        <ScrollViewFood scrollToOverflowEnabled horizontal = {true} showsHorizontalScrollIndicator = {false} contentContainerStyle={{ paddingBottom: 30 }}>
-          {/* {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Cơm và sôi',onPressRice)}
-          {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Món nước',onPress)}
-          {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Trà sữa và trà',onPress)}
-          {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Bánh mì',onPress)}
-          {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Bánh mì',onPress)}
-          {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW','Bánh mì',onPress)} */}
-          {arrTextAndFunction.map(e => {
+        <ScrollViewFood scrollToOverflowEnabled horizontal = {true} showsHorizontalScrollIndicator = {false} 
+        contentContainerStyle={{ paddingBottom: 30 }}>
+          {foodMenuList && foodMenuList.map(e => {
             return(
               <View>
-              {RenderFood('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5olV2bcbsDizZLVqK_WWXxUD_b7Dw_LG8DNvmk0M2oTVp2lW', e[0], e[1], onPressMenu)}
+              {RenderFood(e.uri, e.name, 'CallGoFood', onPressMenu)}
               </View>
             )
           })}
         </ScrollViewFood>
       </ViewBanner>
       <ViewBottom>
-        {/* {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)}
-        {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg','Đặt món ngay',onPress)} */}
-        {arrTextAndScreen2.map(e => {
+        {imageList2.length>0 && imageList2.map(e => {
           return(
             <View>
-              {RenderImage('https://i.ytimg.com/vi/6qurkGQ7Bf0/maxresdefault.jpg',e[0], e[1],onPressMenu)}
+              {RenderImage(e.uri, e.text, e.screenName, onPressMenu)}
             </View>
           )
         })}
-        
       </ViewBottom>
     </MainWrapper>
   )
