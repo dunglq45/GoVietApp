@@ -1,5 +1,5 @@
-import React from 'react'
-import {View} from 'react-native'
+
+import React ,{useEffect, useState}from 'react'
 import {
   LoginWrapper,
   ImageHeader,
@@ -14,17 +14,20 @@ import {
   Text
 } from './styled'
 
-function Login(){
+function Login(props){
+  const {
+    navigation,
+  } = props
   return(
     <LoginWrapper>
       <ImageHeader source= {require('../../../assets/imageMain/logo.png')} ></ImageHeader>
       <ImageContent source={require('../../../assets/imageMain/logo_1.jpeg')}></ImageContent>
       <TextWrapper>Chào mừng đến với GoViet!</TextWrapper>
       <ViewLogin>
-        <TouchableOpacityLogin>
+        <TouchableOpacityLogin onPress={() => navigation.navigate('ScreenLogin')}>
           <TextLogin>ĐĂNG NHẬP</TextLogin>
         </TouchableOpacityLogin>
-        <TouchableOpacityLogin>
+        <TouchableOpacityLogin onPress={() => navigation.navigate('ScreenSubscribe')}>
           <TextLogin>ĐĂNG KÍ</TextLogin>
         </TouchableOpacityLogin>
       </ViewLogin>

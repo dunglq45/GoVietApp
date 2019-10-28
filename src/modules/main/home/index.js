@@ -3,6 +3,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconFood from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconSend from 'react-native-vector-icons/Entypo'
 import Colors from '../../../utils/Colors' 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {
   MainWrapper,
   ImageLogo,
@@ -28,8 +30,19 @@ import {
   View
 } from './styled'
 import constant from '../../../utils/contanst'
+import {
+  getFoodMenu,
+  getImage,
+  getImage2
+} from '../reducer'
 function Main(props){
-  const {navigation} = props
+  const {
+    navigation,
+    getFoodMenu,
+    getImage,
+    getImage2,
+    main
+  } = props
   // const arrTextAndFunction = [
   //   ['Cơm và sôi' , "CallGoFood"],
   //   ['Món nước', "CallGoFood"],
@@ -46,50 +59,53 @@ function Main(props){
   //   ['Xem ngay','CallGoFood'],
   //   ['Nhập mã ngay','Sale']
   // ]
-  const screen =['CallGoFood','CallGoBike','CallGoFood','Sale']
-  const [foodMenuList, setFoodMenuList] = useState([])
-  const [imageList, setImageList] = useState([])
-  const [imageList2, setImageList2] = useState([])
-  function getFoods(){
-    fetch(`${constant.serverName}foodmenu.json`)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      setFoodMenuList(responseJson)
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-  function getImages(){
-    fetch(`${constant.serverName}images.json`)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      setImageList(responseJson)
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-  function getImages2(){
-    fetch(`${constant.serverName}images2.json`)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      setImageList2(responseJson)
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+  // const screen =['CallGoFood','CallGoBike','CallGoFood','Sale']
+  // const [foodMenuList, setFoodMenuList] = useState([])
+  // const [imageList, setImageList] = useState([])
+  // const [imageList2, setImageList2] = useState([])
+  // function getFoods(){
+  //   fetch(`${constant.serverName}foodmenu.json`)
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     console.log(responseJson)
+  //     setFoodMenuList(responseJson)
+  //     return responseJson.movies;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }
+  // function getImages(){
+  //   fetch(`${constant.serverName}images.json`)
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     console.log(responseJson)
+  //     setImageList(responseJson)
+  //     return responseJson.movies;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }
+  // function getImages2(){
+  //   fetch(`${constant.serverName}images2.json`)
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     console.log(responseJson)
+  //     setImageList2(responseJson)
+  //     return responseJson.movies;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }
   useEffect(() =>{
-    getFoods()
-    getImages()
-    getImages2()
+    // getFoods()
+    // getImages()
+    // getImages2()
+    getFoodMenu()
+    getImage()
+    getImage2()
   },[])
   function onPressMenu(screenName){
     console.log(typeof screenName)
@@ -134,7 +150,7 @@ function Main(props){
         <TextImage>GO-FOOD</TextImage>
         <TextImage>GO-SEND</TextImage>
       </ViewWraper>
-        {imageList.length > 0 && imageList.map(e => {
+        {main.image.length > 0 && main.image.map(e => {
           return(
             <View>
               {RenderImage(e.uri, e.text, e.screenName,onPressMenu)}
@@ -151,7 +167,7 @@ function Main(props){
       <ViewBanner>
         <ScrollViewFood scrollToOverflowEnabled horizontal = {true} showsHorizontalScrollIndicator = {false} 
         contentContainerStyle={{ paddingBottom: 30 }}>
-          {foodMenuList && foodMenuList.map(e => {
+          {main.foodMenu && main.foodMenu.length > 0 && main.foodMenu.map(e => {
             return(
               <View>
               {RenderFood(e.uri, e.name, 'CallGoFood', onPressMenu)}
@@ -161,7 +177,7 @@ function Main(props){
         </ScrollViewFood>
       </ViewBanner>
       <ViewBottom>
-        {imageList2.length>0 && imageList2.map(e => {
+        {main.image2.length>0 && main.image2.map(e => {
           return(
             <View>
               {RenderImage(e.uri, e.text, e.screenName, onPressMenu)}
@@ -172,4 +188,18 @@ function Main(props){
     </MainWrapper>
   )
 }
-export default Main
+const mapStateToProps = state => ({
+  main: state.main,
+  authen : state.authen
+})
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    getFoodMenu,
+    getImage,
+    getImage2
+  }, dispatch)
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main)

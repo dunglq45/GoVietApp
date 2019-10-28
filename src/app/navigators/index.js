@@ -8,7 +8,9 @@ import
   {
   AuthenticationLogin,
   AuthenticationForgotPassword,
-  AuthenticationLoading
+  AuthenticationLoading,
+  ScreenLogin,
+  ScreenSubscribe
   } 
 from '../../modules/authen/index';
 import {
@@ -30,16 +32,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
 import constanst from '../../utils/contanst';
 import Colors from '../../utils/Colors';
+
 const AuthStack = createStackNavigator(
   {
-    AuthenticationForgotPassword,
-    AuthenticationLogin
+    AuthenticationLogin,
+    ScreenLogin,
+    ScreenSubscribe
   },
   {
     initialRouteName: 'AuthenticationLogin',
     headerMode: 'none'
-  }
-)
+  })
 const SupportStack = createStackNavigator(
   {
     Support: SupportHome,
@@ -51,6 +54,18 @@ const SupportStack = createStackNavigator(
     headerMode: 'none'
   }
 )
+SupportStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+  let drawerLockMode = 'locked-closed'
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+    drawerLockMode = 'locked-closed'
+  }
+    return {
+      tabBarVisible,
+      drawerLockMode
+    }
+   }
 const MainStack = createStackNavigator({
     Main: MainHome,
     CallGoBike: CallGoBike,
@@ -61,6 +76,18 @@ const MainStack = createStackNavigator({
   initialRouteName: 'Main',
   headerMode: 'none'
 })
+MainStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+  let drawerLockMode = 'locked-closed'
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+    drawerLockMode = 'locked-closed'
+  }
+    return {
+      tabBarVisible,
+      drawerLockMode
+    }
+   }
 const ProfileStack = createStackNavigator({
 Profile: ProfileHome,
 Sale: saleOff,
@@ -73,7 +100,18 @@ initialRouteName: 'Profile',
 headerMode: 'none'
 
 })
-
+ProfileStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+  let drawerLockMode = 'locked-closed'
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+    drawerLockMode = 'locked-closed'
+  }
+    return {
+      tabBarVisible,
+      drawerLockMode
+    }
+   }
 const OrderStack = createStackNavigator({
   Order: OrderHome,
 },
@@ -117,7 +155,7 @@ Auth: AuthStack,
 App: tabStack,
 },
 {
-  initialRouteName: 'App',
+  initialRouteName: 'Auth',
   headerMode: 'none'
 })
 export default createAppContainer(StackNavigation)

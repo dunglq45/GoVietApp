@@ -1,9 +1,11 @@
 import React from 'react'
 import {View, Text} from 'react-native'
-function CallGoBike(){
+import {Header} from '../../../components'
+function CallGoBike(props){
+  const {navigation} = props
   return(
     <View>
-      <Text>CallGoBike</Text>
+      <Header navigation={navigation} title={'TÀI NGUYÊN'} back fonts></Header>
     </View>
   )
 }

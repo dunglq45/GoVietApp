@@ -11,5 +11,5 @@ export default{
     'Support' : 'Trợ giúp',
     'Profile' : 'Tài khoản',
   },
-  serverName : 'http://localhost:8000/'
+  serverName : 'http://10.4.9.76:8000/'
 }
