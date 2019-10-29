@@ -1,10 +1,14 @@
 import React from 'react'
-import {View, Text} from 'react-native'
-function CallGoFood(){
+import {Header} from '../../../components'
+import{
+  ViewWrappre
+} from './styled'
+function CallGoFood(props){
+  const {navigation} = props
   return(
-    <View>
-      <Text>CallGoFood</Text>
-    </View>
+    <ViewWrappre>
+      <Header navigation={navigation} back title='Go Food' fonts></Header>
+    </ViewWrappre>
   )
 }
 export default CallGoFood

@@ -1,16 +1,14 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {Header} from '../../../components'
 import {
   TouchableOpacityHeader,
   ViewWrapper
 } from './styled'
-function ChangeLanguage(){
+function ChangeLanguage(props){
+  const {navigation} = props
   return(
     <ViewWrapper>
-      <TouchableOpacityHeader onPress= {() => goBack()}>
-        <Text>ChangeLanguage</Text>
-      </TouchableOpacityHeader>
-      
+        <Header navigation={navigation} back title= 'Thay đổi ngôn ngữ'></Header>
     </ViewWrapper>
   )
 }

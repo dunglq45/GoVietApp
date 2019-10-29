@@ -1,10 +1,16 @@
 import React from 'react'
 import {View, Text} from 'react-native'
-function privacyPolicy(){
+import {Header} from '../../../components'
+import {
+  ViewWrapper
+} from './styled'
+function privacyPolicy(props){
+  const {navigation} = props
   return(
-    <View>
+    <ViewWrapper>
+      <Header navigation= {navigation} back title= 'Chính sách bảo mật'></Header>
       <Text>privacyPolicy</Text>
-    </View>
+    </ViewWrapper>
   )
 }
 export default privacyPolicy

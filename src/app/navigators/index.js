@@ -97,7 +97,8 @@ TermsAndService: TermsAndService,
 },
 {
 initialRouteName: 'Profile',
-headerMode: 'none'
+headerMode: 'none',
+backBehavior: 'initialRoute'
 
 })
 ProfileStack.navigationOptions = ({ navigation }) => {
@@ -148,14 +149,25 @@ const tabStack = createBottomTabNavigator({
     },
   },
   headerMode: 'none',
+  backBehavior: 'previoustab',
+  
 })
+const AppStack = createStackNavigator(
+  {
+    AppMain: tabStack,
+  },
+  {
+    initialRouteName: 'AppMain',
+    headerMode: 'none'
+  }
+)
 const StackNavigation = createSwitchNavigator({
 AuthLoading: AuthenticationLoading,
 Auth: AuthStack,
-App: tabStack,
+App: AppStack,
 },
 {
-  initialRouteName: 'Auth',
+  initialRouteName: 'App',
   headerMode: 'none'
 })
 export default createAppContainer(StackNavigation)

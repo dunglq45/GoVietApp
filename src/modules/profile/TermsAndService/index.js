@@ -1,10 +1,16 @@
 import React from 'react'
 import {View, Text} from 'react-native'
-function TermsAndService(){
+import {Header} from '../../../components'
+import {
+  ViewWrapper
+} from './styled'
+function TermsAndService(props){
+  const {navigation} = props
   return(
-    <View>
+    <ViewWrapper>
+      <Header navigation={navigation} back title='Điều khoản và dịch vụ'></Header>
       <Text>TermsAndService</Text>
-    </View>
+    </ViewWrapper>
   )
 }
 export default TermsAndService

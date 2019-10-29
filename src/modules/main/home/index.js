@@ -150,9 +150,9 @@ function Main(props){
         <TextImage>GO-FOOD</TextImage>
         <TextImage>GO-SEND</TextImage>
       </ViewWraper>
-        {main.image.length > 0 && main.image.map(e => {
+        {main.image.length > 0 && main.image.map((e, index)=> {
           return(
-            <View>
+            <View key = {index}>
               {RenderImage(e.uri, e.text, e.screenName,onPressMenu)}
             </View>
           )
@@ -167,9 +167,9 @@ function Main(props){
       <ViewBanner>
         <ScrollViewFood scrollToOverflowEnabled horizontal = {true} showsHorizontalScrollIndicator = {false} 
         contentContainerStyle={{ paddingBottom: 30 }}>
-          {main.foodMenu && main.foodMenu.length > 0 && main.foodMenu.map(e => {
+          {main.foodMenu && main.foodMenu.length > 0 && main.foodMenu.map((e, i) => {
             return(
-              <View>
+              <View key= {i}>
               {RenderFood(e.uri, e.name, 'CallGoFood', onPressMenu)}
               </View>
             )
@@ -177,9 +177,9 @@ function Main(props){
         </ScrollViewFood>
       </ViewBanner>
       <ViewBottom>
-        {main.image2.length>0 && main.image2.map(e => {
+        {main.image2.length>0 && main.image2.map((e, i) => {
           return(
-            <View>
+            <View key = {i}>
               {RenderImage(e.uri, e.text, e.screenName, onPressMenu)}
             </View>
           )

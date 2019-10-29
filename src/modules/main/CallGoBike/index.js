@@ -5,7 +5,7 @@ function CallGoBike(props){
   const {navigation} = props
   return(
     <View>
-      <Header navigation={navigation} title={'TÀI NGUYÊN'} back fonts></Header>
+      <Header navigation={navigation} title='Go Bike' back fonts></Header>
     </View>
   )
 }

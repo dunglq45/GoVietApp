@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import HomeReducer from '../../modules/main/reducer'
 import AuthenReducer from '../../modules/authen/reducer'
+import ProfileReducer from '../../modules/profile/reducer'
 // import HomeReducer from '../../modules/home/reducer'
 // import NotifiReducer from '../../modules/notification/reducer'
 // import ForumReducer from '../../modules/forum/reducer'
@@ -17,7 +18,8 @@ import AuthenReducer from '../../modules/authen/reducer'
 
 const reducer = combineReducers({
   main: HomeReducer,
-  authen: AuthenReducer
+  authen: AuthenReducer,
+  profile: ProfileReducer
   // home: HomeReducer,
   // notify : NotifiReducer,
   // forum  : ForumReducer,
