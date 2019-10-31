@@ -22,17 +22,20 @@ width: 100%;
 export const TextItem = styled.Text`
 font-size: 18;
 fontWeight: 200;
+padding-left: 10%;
 `
 export const View = styled.View`
 width: 100%;
 height: 1;
-background-color: ${Colors.white_2};
-margin-left: 15%;
+background-color: ${Colors.white_3};
+margin-left: 10%;
+margin-top: 5;
 `
 export const ViewBanner = styled.View`
 `
 export const TouchableOpacitySeach = styled.TouchableOpacity``
 export const TouchableOpacityItem = styled.TouchableOpacity`
+padding-top: 20;
 `
 export const ViewItem = styled.View`
 display: flex;

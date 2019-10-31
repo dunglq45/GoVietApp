@@ -55,20 +55,10 @@ function Support(props){
         {support.SupportContent.map((e, i) => {
           return(
             <TouchableOpacityItem key ={i}>
-              {RenderItem(e)}
+              {RenderItem(e.text)}
             </TouchableOpacityItem>
           )
         })}
-        {arr.map((e,i) => {
-          return(
-            <TouchableOpacityItem key ={i}>
-              {RenderItem(e)}
-            </TouchableOpacityItem>
-          )
-        })}
-        <TouchableOpacityItem>
-        {RenderItem('gobike')}
-        </TouchableOpacityItem>
       </ViewBanner>
     </ViewWrapper>
   )

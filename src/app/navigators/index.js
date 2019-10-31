@@ -127,7 +127,7 @@ const tabStack = createBottomTabNavigator({
   Profile: ProfileStack,
 },
 {
-  initialRouteName: 'Main',
+  initialRouteName: 'Support',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
