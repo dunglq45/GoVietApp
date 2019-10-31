@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState, createRef } from 'react'
 import Colors from '../../../utils/Colors'
 import Icon from 'react-native-vector-icons/Feather'
 import IconItem from 'react-native-vector-icons/AntDesign'
 import IconBike from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconFood from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconSend from 'react-native-vector-icons/Entypo'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {getSupportContent} from '../reducer'
 import {
   ViewWrapper,
   ViewHeader,
@@ -16,9 +19,19 @@ import {
   TextItem,
   TouchableOpacitySeach,
   ViewItem,
+  ViewSupport
 } from './styled'
 
-function Support(){
+function Support(props){
+  const {
+    navigation,
+    getSupportContent,
+    support
+  } = props
+  useEffect(() =>{
+    getSupportContent()
+  },[])
+  const arr = ['gobike', 'gofood', 'gosend', 'khac']
   function RenderItem(text){
     return(
       <ViewRenderItem>
@@ -39,27 +52,36 @@ function Support(){
         </TouchableOpacitySeach>
       </ViewHeader>
       <ViewBanner>
+        {support.SupportContent.map((e, i) =>{
+          return(
+            <TouchableOpacityItem key ={i}>
+              {RenderItem(e)}
+            </TouchableOpacityItem>
+          )
+        })}
+        {arr.map((e,i) => {
+          return(
+            <TouchableOpacityItem key ={i}>
+              {RenderItem(e)}
+            </TouchableOpacityItem>
+          )
+        })}
         <TouchableOpacityItem>
-          <IconBike name= 'motorbike' size= {30} color= {Colors.green_2}></IconBike>
-          {RenderItem('GO-BIKE')}
+        {RenderItem('gobike')}
         </TouchableOpacityItem>
-        <TouchableOpacityItem>
-          <IconFood name= 'bowl' size= {30} color= {Colors.red_1}></IconFood>
-          {RenderItem('GO-FOOD')}
-        </TouchableOpacityItem>
-        <TouchableOpacityItem>
-          <IconSend name= 'box' size= { 30} color= {Colors.yellow_1}></IconSend>
-          {RenderItem('GO-SEND')}
-        </TouchableOpacityItem>
-        <TouchableOpacityItem style={{paddingLeft: 30}}>
-          {RenderItem('Tài khoản')} 
-        </TouchableOpacityItem>
-        <TouchableOpacityItem style={{paddingLeft: 30}}>
-          {RenderItem('Khác')} 
-        </TouchableOpacityItem>
-      
       </ViewBanner>
     </ViewWrapper>
   )
 }
-export default Support
+const mapStateToProps = state => ({
+  support : state.support
+})
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    getSupportContent,
+  }, dispatch)
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Support)

@@ -1,6 +1,8 @@
-import React from 'react'
+import React ,{useEffect, useState}from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../../../utils/Colors'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {
   ViewWrapper,
   ViewHeader,
@@ -12,8 +14,15 @@ import {
   TextBottom,
   ViewBottom
 } from './styled'
-
-function Order(){
+import {getOrderImage} from '../reducer'
+function Order(props){
+  const {
+    getOrderImage,
+    order
+  } = props
+  useEffect(() =>{
+    getOrderImage()
+  },[])
   return(
     <ViewWrapper>
       <ViewHeader>
@@ -23,7 +32,14 @@ function Order(){
         </TouchableOpacityHeader>
       </ViewHeader>
       <View></View>
-      <ImageWrapper source= {require('../../../assets/imageMain/logo.png')}></ImageWrapper>
+      {
+        order.OrderImage.map((e,i) => {
+          return(
+            <ImageWrapper key ={i} source={{uri: e.uri}}></ImageWrapper>
+          )
+        })
+      }
+      
       <ViewBottom>
         <TextWrapper>Hãy đặt hàng GoViet!</TextWrapper>
         <TextBottom>Các tài xế của chúng tôi rất vui{"\n"} lòng được phục vụ bạn.</TextBottom>
@@ -31,4 +47,15 @@ function Order(){
     </ViewWrapper>
   )
 }
-export default Order
+const mapStateToProps = state => ({
+  order: state.order
+})
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    getOrderImage
+  }, dispatch)
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Order)
