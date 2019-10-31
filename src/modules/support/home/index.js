@@ -52,7 +52,7 @@ function Support(props){
         </TouchableOpacitySeach>
       </ViewHeader>
       <ViewBanner>
-        {support.SupportContent.map((e, i) =>{
+        {support.SupportContent.map((e, i) => {
           return(
             <TouchableOpacityItem key ={i}>
               {RenderItem(e)}
